@@ -1,0 +1,76 @@
+###############################################################################
+# Licence
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# About
+#
+#     rdump.rb
+#     version 0.1 (01 Apr. 2011)
+#
+#     This is a simple Ruby script to DUMP a PostgreSQL database in a GZ
+#     compressed file.
+#
+# How tu RUN the script
+#
+#     You need:
+#       1) A Ruby 1.8 or 1.9 environment
+#       2) A PostgreSQL 8+ database
+#
+#       The PostgreSQL 'bin' directory MUST be in your path.
+#       Meaning, you should be able to type "psql" in a terminal and get no error message.
+#
+#       The scripts connects to PostgreSQL as "postgres".
+#       This is the default admin user created by PostgreSQL.
+#       Make sure this user is available and has all the rights to dump.
+#
+#       3) Give the script the right to be executed:
+#         chmod +x rdump.rb
+#
+#       And then, run it like that:
+#         ./rdump.rb
+#
+#       or, if you can't chmod:
+#         ruby rdump.rb
+#
+# How to USE the script
+#
+#     It can be executed in a terminal, or as a cronjob.
+#
+#     To execute it as a cronjob, you'll have to supply some mandatory arguments:
+#       1) the database name (--database [name]), or use --all-databases
+#       2) the type of dump (--dump [FULL|SCHEMA|DATA]). FULL means Schema+Data.
+#       3) the directory where to save the dump file (--to [Unix Path, eg. ~/backups/])
+#
+#     To execute it yourself, in a terminal, either use some arguments (type [./rdump --help] for a list)
+#     or just run it without any argument, and you will be asked to choose the database name, the dump type
+#     and the dumpfile path.
+#
+#     If you don't answer a question, the default value will be used:
+#       no database name = backup all the databases
+#       no dump type specified = FULL dump (schema+data)
+#       no path specified = write the file in the current directory, if it's writable
+#         (NB: the current directory is the directory where you run the script from, not the script's directory
+#           eg. if you're in ~/home/ and the script in ~/scripts/, the current directory is ~/home/)
+#
+# One More Thing
+#
+#   This script is not perfect. It's far from it. However, it shouldn't do any harm.
+#   But that's not a reason to be too confident: you should NEVER run a script
+#   if you don't understand what it does. Take 5 minutes, and read the code.
+#   If you can't read/understand the source code, search for dangerous commands
+#   such as "rm". Finally, never run a script as root (su/sudo) unless you can't
+#   run it as a normal user.
+#
+###############################################################################
