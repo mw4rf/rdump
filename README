@@ -64,6 +64,28 @@
 #         (NB: the current directory is the directory where you run the script from, not the script's directory
 #           eg. if you're in ~/home/ and the script in ~/scripts/, the current directory is ~/home/)
 #
+# Examples
+#
+#     # Dump all databases, each one in its own file,
+#     # and saves thoses files in the current directory.
+#     # You will be asked for the dump type (FULL, SCHEMA, DATA).
+#
+#       ./rdump --all-databases --here
+#
+#     # Dump the structure and the data of all the databases,
+#     # in one single file, saved in ~/backups/my_databases/
+#
+#       ./rdump --all-databases --in-one-file --full-dump --to ~/backups/my_databases/
+#
+#     # Dumps the Schema of MyBase database and saves
+#     # the file in the current directory.
+#
+#       ./rdump --database MyBase --dump SCHEMA --here
+#
+#     # The most complete cronjob would be:
+#
+#       ./rdump --full-dump --all-databases --in-one-file --to ~/pgbackups
+#
 # One More Thing
 #
 #   This script is not perfect. It's far from it. However, it shouldn't do any harm.

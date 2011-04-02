@@ -100,6 +100,15 @@ options = {}
 opts = OptionParser.new do |opt|
   opt.banner = <<-eos
 #{blue "Usage: rdump.rb [options]"}
+  
+#{b "Install"}
+  1) Give rights to execute:
+      chmod +x rdump.rb
+  2) Run it like that:
+      ./rdump
+      
+  or, if you can't chmod:
+      ruby rdump.rb
 
 #{b "Call the script as a cronjob"}
 If you call this script as a cronjob, you #{red b "MUST"} provide all mandatory options:
@@ -115,18 +124,18 @@ If an option is omitted, you will be asked to provide a custom value, or just hi
   # Dump all databases, each one in its own file,
   # and saves thoses files in the current directory.
   # You will be asked for the dump type (FULL, SCHEMA, DATA).
-  rdump --all-databases --here
+  ./rdump --all-databases --here
 
   # Dump the structure and the data of all the databases,
   # in one single file, saved in ~/backups/my_databases/
-  rdump --all-databases --in-one-file --full-dump --to ~/backups/my_databases/
+  ./rdump --all-databases --in-one-file --full-dump --to ~/backups/my_databases/
 
   # Dumps the Schema of MyBase database and saves
   # the file in the current directory.
-  rdump --database MyBase --dump SCHEMA --here
+  ./rdump --database MyBase --dump SCHEMA --here
 
   # The most complete cronjob would be:
-  rdump --here --all-databases --in-one-file --full-dump
+  ./rdump --full-dump --all-databases --in-one-file --to ~/pgbackups
 
 #{b "Available options"}:
 eos
